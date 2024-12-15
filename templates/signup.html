@@ -1,0 +1,134 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'assets/images/favicon.png' %}" rel="icon" type="image/png">
+    <title>注册新用户</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/tailwind.css' %}">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            overflow: hidden; /* 禁止滚动条 */
+            position: relative;
+        }
+
+        /* 动态点缀样式 */
+        .dot {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 182, 193, 0.6); /* 粉色 */
+            animation: float 3s infinite; /* 浮动动画 */
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <div id="wrapper" class="flex flex-col justify-between h-screen">
+
+        <!-- header-->
+        <div class="bg-white py-4 shadow dark:bg-gray-800">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center lg:justify-between justify-around">
+                    <a href="about">
+                        <b><h1 style="font-size: 1.5rem;">注册新用户</h1></b>
+                    </a>
+                    <div class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm">
+                        <a href="/signin" class="bg-pink-500 pink-500 px-6 py-3 rounded-md shadow text-white">登 录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content-->
+        <div>
+            <div class="lg:p-12 max-w-md max-w-xl lg:my-0 my-12 mx-auto p-6 space-y- text-center">
+                <h1 class="lg:text-3xl text-xl font-semibold mb-6"> 注  册 </h1>
+
+                <div>
+                    <style>
+                        h5 {
+                            color: red;
+                        }
+                    </style>
+                    {% for message in messages %}
+                    <h5>{{message}}</h5>
+                    {% endfor %}
+                </div>
+
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="username" placeholder="用户名" class="bg-gray-200 mb-2 shadow-none  dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
+                    <input type="email" name="email" placeholder="电子邮箱" class="bg-gray-200 mb-2 shadow-none  dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
+                    <input type="password" name="password" placeholder="密码" class="bg-gray-200 mb-2 shadow-none  dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
+                    <input type="password" name="password2" placeholder="确认密码" class="bg-gray-200 mb-2 shadow-none  dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
+                    <button type="submit" class="bg-gradient-to-br from-pink-500 py-3 rounded-md text-white text-xl to-red-400 w-full">注 册</button>
+                    <div class="text-center mt-5 space-x-2">
+                        <p class="text-base">已有用户？ <a href="/signin" class="text-pink-500 underline">那就登录！</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="lg:mb-5 py-3 uk-link-reset">
+            <div class="flex flex-col items-center justify-between lg:flex-row max-w-6xl mx-auto lg:space-y-0 space-y-3">
+                <div class="flex space-x-2 text-gray-700 uppercase">
+                    <a href="about"> 关于</a>
+                    <a href="about"> 帮助</a>
+                    <a href="about"> 联系我们</a>
+                    <a href="about"> 隐私政策</a>
+                    <a href="about"> 条款</a>
+                    <a href="about"> 注册</a>
+                </div>
+                <p class="capitalize"> © copyright 2024 by Weibq</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/uikit.js' %}"></script>
+    <script src="{% static 'assets/js/simplebar.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+    <script>
+        const dotCount = 30; // 点的数量
+        for (let i = 0; i < dotCount; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            const size = Math.random() * 15 + 5; // 每个点的大小
+            dot.style.width = size + 'px';
+            dot.style.height = size + 'px';
+            dot.style.left = Math.random() * 100 + 'vw'; // 随机水平位置
+            dot.style.top = Math.random() * 100 + 'vh'; // 随机垂直位置
+            dot.style.animationDuration = (Math.random() * 2 + 2) + 's'; // 随机浮动时间
+            document.body.appendChild(dot);
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            overflow: hidden; /* 避免出现滚动条 */
+            position: relative;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1; /* 确保内容在气球之上 */
+        }
+
+        h1 {
+            color: #ff4d94; /* 粉色 */
+            font-size: 2.5rem;
+            text-align: left;
+            margin-bottom: 20px;
+            animation: fadeIn 1s; /* 动画效果 */
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        /* 添加动态效果 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* 气球样式 */
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            animation: rise 10s infinite;
+            width: 50px; /* 气球宽度 */
+            height: 70px; /* 气球高度 */
+            background-color: #ff5733; /* 默认颜色 */
+            border-radius: 50% 50% 0 0; /* 气球顶部的圆弧 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 气球颜色变化 */
+        .balloon:nth-child(1) { background-color: #ff5733; } /* 红色 */
+        .balloon:nth-child(2) { background-color: #33c3ff; } /* 蓝色 */
+        .balloon:nth-child(3) { background-color: #75ff33; } /* 绿色 */
+        .balloon:nth-child(4) { background-color: #ff33c4; } /* 粉色 */
+        .balloon:nth-child(5) { background-color: #f3ff33; } /* 黄色 */
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-100vh); /* 气球上升的高度 */
+            }
+        }
+
+        /* 背景点缀 */
+        .dot {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.1);
+            animation: float 5s infinite;
+            z-index: 0; /* 确保点在内容下面 */
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>关于我们</h1>
+        <p><strong>Django版本：</strong>3.2.24</p>
+        <p><strong>Python版本：</strong>3.8.20</p>
+        <p><strong>数据库信息：</strong></p>
+        <p>操作系统：openEuler-22.03-LTS-x86_64</p>
+        <p>OpenGauss版本：GaussDB Kernel V500R002C00 build</p>
+
+        <div class="footer">
+            <p>感谢您的关注！</p>
+        </div>
+    </div>
+
+    <!-- 添加气球 -->
+    <script>
+        const balloonCount = 5; // 气球数量
+        for (let i = 0; i < balloonCount; i++) {
+            const balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+            balloon.style.left = Math.random() * 100 + 'vw'; // 随机在屏幕宽度内
+            document.body.appendChild(balloon);
+        }
+
+        // 添加点缀
+        const dotCount = 20; // 点的数量
+        for (let i = 0; i < dotCount; i++) {
+            const dot = document.createElement('div');
+            const size = Math.random() * 10 + 5; // 点的大小在5到15之间
+            dot.classList.add('dot');
+            dot.style.width = size + 'px';
+            dot.style.height = size + 'px';
+            dot.style.left = Math.random() * 100 + 'vw';
+            dot.style.top = Math.random() * 100 + 'vh';
+            dot.style.animationDuration = (Math.random() * 3 + 2) + 's'; // 动画持续时间
+            document.body.appendChild(dot);
+        }
+    </script>
+</body>
+
+</html>
